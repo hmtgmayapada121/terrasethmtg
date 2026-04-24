@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - TERRASET</title>
+
+<style>
+:root {
+  --navy: #102B3A;
+  --gold: #D4AF37;
+  --cream: #F2E8C9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: var(--cream);
+  color: var(--navy);
+}
+
+/* HEADER */
+header {
+  background: var(--navy);
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 40px;
+}
+
+.logo span {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+/* SECTION */
+.section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+/* TITLE */
+h1 {
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.tagline {
+  color: var(--gold);
+  margin-bottom: 30px;
+}
+
+/* BOX */
+.box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.box h3 {
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.box p {
+  color: #444;
+  line-height: 1.6;
+}
+
+/* GRID MAKNA */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="logo">
+    <span>TERRASET</span>
+  </div>
+</header>
+
+<section class="section">
+  <h1>TERRASET</h1>
+  <p class="tagline">TERRA • SET • TOGETHER</p>
+
+  <div class="box">
+    <h3>Tentang Kami</h3>
+    <p>
+      TERRASET merupakan representasi dari "Terra" (bumi) dan "Set" (himpunan).
+      Brand ini melambangkan HMTG Mayapada ITERA sebagai satu kesatuan yang solid,
+      menggali ilmu kebumian, serta membangun masa depan bersama.
+    </p>
+  </div>
+
+  <div class="box">
+    <h3>Makna Logo</h3>
+
+    <div class="grid">
+
+      <div>
+        <h4>⛰ Gunung</h4>
+        <p>Melambangkan eksplorasi dan tantangan dalam ilmu kebumian.</p>
+      </div>
+
+      <div>
+        <h4>🌊 Lapisan</h4>
+        <p>Representasi struktur bumi dan ilmu geologi.</p>
+      </div>
+
+      <div>
+        <h4>🧭 Kompas</h4>
+        <p>Simbol arah, tujuan, dan visi organisasi.</p>
+      </div>
+
+      <div>
+        <h4>🔵 Himpunan</h4>
+        <p>Kesatuan HMTG dalam satu identitas yang kuat.</p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  © TERRASET HMTG MAYAPADA ITERA
+</footer>
+
+</body>
+</html>

@@ -21,61 +21,39 @@
   scroll-behavior: smooth;
 }
 
-/* NAVBAR */
 header {
   position: fixed;
   width: 100%;
-  top: 0;
-  left: 0;
   padding: 20px 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: rgba(16,43,58,0.6);
   backdrop-filter: blur(10px);
-  z-index: 999;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
+.logo img { width: 55px; }
+.logo span { color: var(--gold); font-weight: 700; }
 
-.logo img {
-  width: 55px;
-}
-
-.logo span {
-  color: var(--gold);
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-/* NAV RIGHT */
 .nav-right {
   display: flex;
-  align-items: center;
-  gap: 25px;
+  gap: 20px;
 }
 
 .nav-link {
   color: white;
   text-decoration: none;
-  font-size: 14px;
-  opacity: 0.8;
-  transition: 0.3s;
-}
-
-.nav-link:hover {
-  opacity: 1;
-  color: var(--gold);
 }
 
 .cart-btn {
   background: var(--gold);
-  padding: 10px 14px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -86,107 +64,82 @@ header {
     linear-gradient(rgba(16,43,58,0.7), rgba(16,43,58,0.9)),
     url('hero-bg.png');
   background-size: cover;
-  background-position: center;
-
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
   color: white;
+  text-align: center;
 }
 
-.hero-content h1 {
-  font-size: 50px;
-  color: var(--gold);
-}
-
-.hero-content p {
-  margin-top: 10px;
-  opacity: 0.85;
-}
-
-.hero-btn {
-  margin-top: 25px;
-  background: var(--gold);
-  color: black;
-  padding: 12px 24px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 600;
-}
+.hero h1 { color: var(--gold); }
 
 /* SECTION */
 .section {
-  padding: 100px 60px 60px;
-}
-
-.section h2 {
-  margin-bottom: 20px;
+  padding: 100px 60px;
 }
 
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 20px;
 }
 
-/* CARD */
 .card {
-  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transition: 0.3s;
 }
-
-.card:hover {
-  transform: translateY(-8px);
-}
-
 .card img {
   width: 100%;
-  height: 220px;
+  height: 200px;
   object-fit: cover;
 }
-
 .card-body {
   padding: 15px;
   text-align: center;
 }
 
-.price {
-  color: var(--gold);
-  font-weight: bold;
-  margin: 10px 0;
-}
+.price { color: var(--gold); margin: 10px 0; }
 
 button {
   background: var(--gold);
   border: none;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 8px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
 /* CART */
 .cart {
   position: fixed;
-  right: -320px;
+  right: -350px;
   top: 0;
-  width: 320px;
+  width: 350px;
   height: 100%;
   background: white;
-  box-shadow: -5px 0 20px rgba(0,0,0,0.3);
   padding: 20px;
   transition: 0.3s;
   overflow-y: auto;
 }
 
-.cart.active {
-  right: 0;
+.cart.active { right: 0; }
+
+.cart-item {
+  margin-bottom: 10px;
 }
 
-/* FOOTER */
+.qty-btn {
+  margin: 0 5px;
+  padding: 2px 6px;
+}
+
+.clear-btn {
+  margin-top: 10px;
+  background: crimson;
+  color: white;
+}
+
 footer {
   background: var(--navy);
   color: white;
@@ -198,7 +151,6 @@ footer {
 
 <body>
 
-<!-- NAVBAR -->
 <header>
   <div class="logo">
     <img src="logo.png">
@@ -211,62 +163,64 @@ footer {
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
+  <div>
     <h1>TERRASET</h1>
-    <p>Official Merchandise HMTG Mayapada ITERA</p>
-    <div class="hero-btn" onclick="scrollToProduk()">Shop Now</div>
+    <p>Official Merchandise</p>
   </div>
 </section>
 
-<!-- PRODUK -->
 <section class="section" id="produk">
 
-  <h2>Inventaris</h2>
-  <div class="grid">
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Palu Sidang</h3><div class="price">Rp 150.000</div><button onclick="addToCart('Palu Sidang',150000)">Tambah</button></div></div>
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Toa</h3><div class="price">Rp 200.000</div><button onclick="addToCart('Toa',200000)">Tambah</button></div></div>
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Drum</h3><div class="price">Rp 300.000</div><button onclick="addToCart('Drum',300000)">Tambah</button></div></div>
-  </div>
+<h2>Inventaris</h2>
+<div class="grid">
+  <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Palu Sidang</h3><div class="price">Rp 150.000</div><button onclick="addToCart('Palu Sidang',150000)">Tambah</button></div></div>
+  <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Toa</h3><div class="price">Rp 200.000</div><button onclick="addToCart('Toa',200000)">Tambah</button></div></div>
+  <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Drum</h3><div class="price">Rp 300.000</div><button onclick="addToCart('Drum',300000)">Tambah</button></div></div>
+</div>
 
-  <h2 style="margin-top:50px;">Merchandise</h2>
-  <div class="grid">
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Gelang</h3><div class="price">Rp 10.000</div><button onclick="addToCart('Gelang',10000)">Tambah</button></div></div>
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Keychain</h3><div class="price">Rp 15.000</div><button onclick="addToCart('Keychain',15000)">Tambah</button></div></div>
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Bandana</h3><div class="price">Rp 25.000</div><button onclick="addToCart('Bandana',25000)">Tambah</button></div></div>
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Sticker</h3><div class="price">Rp 10.000</div><button onclick="addToCart('Sticker',10000)">Tambah</button></div></div>
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Pin</h3><div class="price">Rp 12.000</div><button onclick="addToCart('Pin',12000)">Tambah</button></div></div>
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Topi</h3><div class="price">Rp 65.000</div><button onclick="addToCart('Topi',65000)">Tambah</button></div></div>
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Tumbler</h3><div class="price">Rp 90.000</div><button onclick="addToCart('Tumbler',90000)">Tambah</button></div></div>
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Tote Bag</h3><div class="price">Rp 70.000</div><button onclick="addToCart('Tote Bag',70000)">Tambah</button></div></div>
-    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>T-Shirt</h3><div class="price">Rp 85.000</div><button onclick="addToCart('T-Shirt',85000)">Tambah</button></div></div>
-  </div>
+<h2 style="margin-top:40px;">Merchandise</h2>
+<div class="grid">
+  <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Gelang</h3><div class="price">Rp 10.000</div><button onclick="addToCart('Gelang',10000)">Tambah</button></div></div>
+  <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Keychain</h3><div class="price">Rp 15.000</div><button onclick="addToCart('Keychain',15000)">Tambah</button></div></div>
+  <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>T-Shirt</h3><div class="price">Rp 85.000</div><button onclick="addToCart('T-Shirt',85000)">Tambah</button></div></div>
+</div>
 
 </section>
 
-<!-- CART -->
 <div class="cart" id="cart">
   <h3>Keranjang</h3>
   <div id="cart-items"></div>
   <div id="total"></div>
   <button onclick="checkout()">Checkout</button>
+  <button class="clear-btn" onclick="clearCart()">Clear</button>
 </div>
 
-<footer>
-  © TERRASET HMTG MAYAPADA ITERA
-</footer>
+<footer>© TERRASET</footer>
 
 <script>
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function formatRupiah(n) {
+  return n.toLocaleString("id-ID");
+}
+
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
 
 function addToCart(name, price) {
   let item = cart.find(i => i.name === name);
-  if(item) {
-    item.qty += 1;
-  } else {
-    cart.push({name, price, qty:1});
-  }
+  if(item) item.qty++;
+  else cart.push({name, price, qty:1});
+  saveCart();
+  renderCart();
+}
+
+function changeQty(index, delta) {
+  cart[index].qty += delta;
+  if(cart[index].qty <= 0) cart.splice(index,1);
+  saveCart();
   renderCart();
 }
 
@@ -275,43 +229,44 @@ function renderCart() {
   let total = 0;
   items.innerHTML = "";
 
-  cart.forEach((i, index) => {
+  cart.forEach((i,index)=>{
     items.innerHTML += `
-      <div style="margin-bottom:10px;">
-        ${i.name} (${i.qty}) - Rp ${i.price * i.qty}
-        <button onclick="removeItem(${index})">❌</button>
-      </div>
-    `;
-    total += i.price * i.qty;
+    <div class="cart-item">
+      ${i.name}<br>
+      Rp ${formatRupiah(i.price*i.qty)}<br>
+      <button class="qty-btn" onclick="changeQty(${index},-1)">-</button>
+      ${i.qty}
+      <button class="qty-btn" onclick="changeQty(${index},1)">+</button>
+    </div>`;
+    total += i.price*i.qty;
   });
 
-  document.getElementById("total").innerText = "Total: Rp " + total;
+  document.getElementById("total").innerText = "Total: Rp " + formatRupiah(total);
 }
 
-function removeItem(index) {
-  cart.splice(index, 1);
-  renderCart();
-}
-
-function toggleCart() {
+function toggleCart(){
   document.getElementById("cart").classList.toggle("active");
 }
 
-function checkout() {
+function clearCart(){
+  cart = [];
+  saveCart();
+  renderCart();
+}
+
+function checkout(){
   let pesan = "Halo TERRASET, saya mau pesan:%0A";
-  cart.forEach(i => {
+  cart.forEach(i=>{
     pesan += `- ${i.name} (${i.qty})%0A`;
   });
 
-  let total = cart.reduce((sum, i) => sum + i.price*i.qty, 0);
-  pesan += `%0ATotal: Rp ${total}`;
+  let total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  pesan += `%0ATotal: Rp ${formatRupiah(total)}`;
 
-  window.open("https://wa.me/628XXXXXXXXXX?text=" + pesan);
+  window.open("https://wa.me/628XXXXXXXXXX?text="+pesan);
 }
 
-function scrollToProduk() {
-  document.getElementById("produk").scrollIntoView();
-}
+renderCart();
 </script>
 
 </body>

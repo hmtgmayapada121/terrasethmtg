@@ -95,10 +95,6 @@ header {
   color: white;
 }
 
-.hero-content {
-  animation: fadeUp 1s ease;
-}
-
 .hero-content h1 {
   font-size: 50px;
   color: var(--gold);
@@ -109,7 +105,6 @@ header {
   opacity: 0.85;
 }
 
-/* BUTTON */
 .hero-btn {
   margin-top: 25px;
   background: var(--gold);
@@ -118,24 +113,6 @@ header {
   border-radius: 30px;
   cursor: pointer;
   font-weight: 600;
-  display: inline-block;
-  transition: 0.3s;
-}
-
-.hero-btn:hover {
-  transform: scale(1.05);
-}
-
-/* ANIMATION */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* SECTION */
@@ -143,13 +120,18 @@ header {
   padding: 100px 60px 60px;
 }
 
-/* PRODUK */
+.section h2 {
+  margin-bottom: 20px;
+}
+
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
   gap: 25px;
 }
 
+/* CARD */
 .card {
   border-radius: 15px;
   overflow: hidden;
@@ -197,6 +179,7 @@ button {
   box-shadow: -5px 0 20px rgba(0,0,0,0.3);
   padding: 20px;
   transition: 0.3s;
+  overflow-y: auto;
 }
 
 .cart.active {
@@ -239,29 +222,27 @@ footer {
 
 <!-- PRODUK -->
 <section class="section" id="produk">
-  <h2>Produk Kami</h2>
 
+  <h2>Inventaris</h2>
   <div class="grid">
-
-    <div class="card">
-      <img src="https://via.placeholder.com/300">
-      <div class="card-body">
-        <h3>T-Shirt</h3>
-        <div class="price">Rp 85.000</div>
-        <button onclick="addToCart('T-Shirt',85000)">Tambah</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://via.placeholder.com/300">
-      <div class="card-body">
-        <h3>Cap</h3>
-        <div class="price">Rp 65.000</div>
-        <button onclick="addToCart('Cap',65000)">Tambah</button>
-      </div>
-    </div>
-
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Palu Sidang</h3><div class="price">Rp 150.000</div><button onclick="addToCart('Palu Sidang',150000)">Tambah</button></div></div>
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Toa</h3><div class="price">Rp 200.000</div><button onclick="addToCart('Toa',200000)">Tambah</button></div></div>
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Drum</h3><div class="price">Rp 300.000</div><button onclick="addToCart('Drum',300000)">Tambah</button></div></div>
   </div>
+
+  <h2 style="margin-top:50px;">Merchandise</h2>
+  <div class="grid">
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Gelang</h3><div class="price">Rp 10.000</div><button onclick="addToCart('Gelang',10000)">Tambah</button></div></div>
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Keychain</h3><div class="price">Rp 15.000</div><button onclick="addToCart('Keychain',15000)">Tambah</button></div></div>
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Bandana</h3><div class="price">Rp 25.000</div><button onclick="addToCart('Bandana',25000)">Tambah</button></div></div>
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Sticker</h3><div class="price">Rp 10.000</div><button onclick="addToCart('Sticker',10000)">Tambah</button></div></div>
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Pin</h3><div class="price">Rp 12.000</div><button onclick="addToCart('Pin',12000)">Tambah</button></div></div>
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Topi</h3><div class="price">Rp 65.000</div><button onclick="addToCart('Topi',65000)">Tambah</button></div></div>
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Tumbler</h3><div class="price">Rp 90.000</div><button onclick="addToCart('Tumbler',90000)">Tambah</button></div></div>
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Tote Bag</h3><div class="price">Rp 70.000</div><button onclick="addToCart('Tote Bag',70000)">Tambah</button></div></div>
+    <div class="card"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>T-Shirt</h3><div class="price">Rp 85.000</div><button onclick="addToCart('T-Shirt',85000)">Tambah</button></div></div>
+  </div>
+
 </section>
 
 <!-- CART -->
@@ -280,7 +261,12 @@ footer {
 let cart = [];
 
 function addToCart(name, price) {
-  cart.push({name, price});
+  let item = cart.find(i => i.name === name);
+  if(item) {
+    item.qty += 1;
+  } else {
+    cart.push({name, price, qty:1});
+  }
   renderCart();
 }
 
@@ -289,12 +275,22 @@ function renderCart() {
   let total = 0;
   items.innerHTML = "";
 
-  cart.forEach(i => {
-    items.innerHTML += `<div>${i.name} - Rp ${i.price}</div>`;
-    total += i.price;
+  cart.forEach((i, index) => {
+    items.innerHTML += `
+      <div style="margin-bottom:10px;">
+        ${i.name} (${i.qty}) - Rp ${i.price * i.qty}
+        <button onclick="removeItem(${index})">❌</button>
+      </div>
+    `;
+    total += i.price * i.qty;
   });
 
   document.getElementById("total").innerText = "Total: Rp " + total;
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  renderCart();
 }
 
 function toggleCart() {
@@ -302,10 +298,15 @@ function toggleCart() {
 }
 
 function checkout() {
-  let pesan = "Halo TERRASET, saya mau pesan:\n";
-  cart.forEach(i => pesan += "- " + i.name + "\n");
+  let pesan = "Halo TERRASET, saya mau pesan:%0A";
+  cart.forEach(i => {
+    pesan += `- ${i.name} (${i.qty})%0A`;
+  });
 
-  window.open("https://wa.me/628XXXXXXXXXX?text=" + encodeURIComponent(pesan));
+  let total = cart.reduce((sum, i) => sum + i.price*i.qty, 0);
+  pesan += `%0ATotal: Rp ${total}`;
+
+  window.open("https://wa.me/628XXXXXXXXXX?text=" + pesan);
 }
 
 function scrollToProduk() {

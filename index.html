@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -291,4 +292,273 @@ function checkout() {
 </script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TERRASET Store</title>
+
+<style>
+:root {
+  --navy: #102B3A;
+  --gold: #D4AF37;
+  --cream: #F2E8C9;
+  --gray: #6B6B6B;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* HEADER */
+header {
+  background: var(--navy);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
+
+header h1 {
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.hero h2 {
+  color: var(--gold);
+  font-size: 32px;
+}
+
+/* PRODUK */
+.produk {
+  padding: 50px 20px;
+  background: var(--cream);
+}
+
+.produk h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--navy);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+  text-align: center;
+}
+
+.card-body h3 {
+  color: var(--navy);
+}
+
+.price {
+  color: var(--gold);
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* BUTTON */
+button {
+  background: var(--gold);
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* CART */
+.cart {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: white;
+  box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+  padding: 15px;
+  display: none;
+}
+
+.cart h3 {
+  margin-bottom: 10px;
+}
+
+.cart-item {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* CART BUTTON */
+.cart-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: var(--gold);
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>TERRASET</h1>
+</header>
+
+<section class="hero">
+  <h2>TERRA • SET • TOGETHER</h2>
+  <p>Official Merchandise HMTG Mayapada ITERA</p>
+</section>
+
+<section class="produk">
+  <h2>Produk Kami</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-body">
+        <h3>T-Shirt</h3>
+        <div class="price">Rp 85.000</div>
+        <button onclick="addToCart('T-Shirt')">Tambah</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-body">
+        <h3>Cap</h3>
+        <div class="price">Rp 65.000</div>
+        <button onclick="addToCart('Cap')">Tambah</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-body">
+        <h3>Tote Bag</h3>
+        <div class="price">Rp 70.000</div>
+        <button onclick="addToCart('Tote Bag')">Tambah</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-body">
+        <h3>Tumbler</h3>
+        <div class="price">Rp 90.000</div>
+        <button onclick="addToCart('Tumbler')">Tambah</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-body">
+        <h3>Sticker</h3>
+        <div class="price">Rp 10.000</div>
+        <button onclick="addToCart('Sticker')">Tambah</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-body">
+        <h3>Keychain</h3>
+        <div class="price">Rp 15.000</div>
+        <button onclick="addToCart('Keychain')">Tambah</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300">
+      <div class="card-body">
+        <h3>Pin</h3>
+        <div class="price">Rp 12.000</div>
+        <button onclick="addToCart('Pin')">Tambah</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="cart" id="cart">
+  <h3>Keranjang</h3>
+  <div id="cart-items"></div>
+</div>
+
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
+
+<script>
+let cart = [];
+
+function addToCart(item) {
+  cart.push(item);
+  renderCart();
+}
+
+function renderCart() {
+  let container = document.getElementById("cart-items");
+  container.innerHTML = "";
+  cart.forEach(i => {
+    container.innerHTML += `<div class="cart-item">${i}</div>`;
+  });
+}
+
+function toggleCart() {
+  let cartBox = document.getElementById("cart");
+  cartBox.style.display = cartBox.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+>>>>>>> 14f35d3c92baeeb71faf0a9bf762b2d8c931a545
 </html>

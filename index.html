@@ -251,6 +251,7 @@ footer {
   <div id="cart-items"></div>
   <div id="total"></div>
   <button onclick="checkout()">Checkout</button>
+  <button onclick="clearCart()" style="margin-top:10px; background:red; color:white;">Clear</button>
 </div>
 
 <footer>
@@ -258,7 +259,15 @@ footer {
 </footer>
 
 <script>
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function formatRupiah(n) {
+  return n.toLocaleString("id-ID");
+}
+
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
 
 function addToCart(name, price) {
   let item = cart.find(i => i.name === name);
@@ -267,6 +276,16 @@ function addToCart(name, price) {
   } else {
     cart.push({name, price, qty:1});
   }
+  saveCart();
+  renderCart();
+}
+
+function changeQty(index, delta) {
+  cart[index].qty += delta;
+  if(cart[index].qty <= 0) {
+    cart.splice(index,1);
+  }
+  saveCart();
   renderCart();
 }
 
@@ -277,19 +296,32 @@ function renderCart() {
 
   cart.forEach((i, index) => {
     items.innerHTML += `
-      <div style="margin-bottom:10px;">
-        ${i.name} (${i.qty}) - Rp ${i.price * i.qty}
+      <div style="margin-bottom:12px; border-bottom:1px solid #ddd; padding-bottom:8px;">
+        <b>${i.name}</b><br>
+        Rp ${formatRupiah(i.price * i.qty)}<br>
+        
+        <button onclick="changeQty(${index},-1)">-</button>
+        ${i.qty}
+        <button onclick="changeQty(${index},1)">+</button>
+
         <button onclick="removeItem(${index})">❌</button>
       </div>
     `;
     total += i.price * i.qty;
   });
 
-  document.getElementById("total").innerText = "Total: Rp " + total;
+  document.getElementById("total").innerText = "Total: Rp " + formatRupiah(total);
 }
 
 function removeItem(index) {
   cart.splice(index, 1);
+  saveCart();
+  renderCart();
+}
+
+function clearCart() {
+  cart = [];
+  saveCart();
   renderCart();
 }
 
@@ -299,12 +331,13 @@ function toggleCart() {
 
 function checkout() {
   let pesan = "Halo TERRASET, saya mau pesan:%0A";
+
   cart.forEach(i => {
     pesan += `- ${i.name} (${i.qty})%0A`;
   });
 
   let total = cart.reduce((sum, i) => sum + i.price*i.qty, 0);
-  pesan += `%0ATotal: Rp ${total}`;
+  pesan += `%0ATotal: Rp ${formatRupiah(total)}`;
 
   window.open("https://wa.me/628XXXXXXXXXX?text=" + pesan);
 }
@@ -312,6 +345,9 @@ function checkout() {
 function scrollToProduk() {
   document.getElementById("produk").scrollIntoView();
 }
+
+/* INIT LOAD */
+renderCart();
 </script>
 
 </body>

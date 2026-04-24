@@ -11,7 +11,6 @@
 :root {
   --navy: #102B3A;
   --gold: #D4AF37;
-  --cream: #F2E8C9;
 }
 
 * {
@@ -19,118 +18,129 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-}
-
-body {
-  background: #fff;
-}
-
-/* HEADER */
-header {
-  background: var(--navy);
-  padding: 30px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* LOGO */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.logo img {
-  width: 80px;
-  height: auto;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
-}
-
-.brand-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.brand-text h1 {
-  color: var(--gold);
-  font-size: 28px;
-  letter-spacing: 2px;
-}
-
-.brand-text span {
-  font-size: 11px;
-  color: var(--cream);
-}
-
-/* NAV */
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-
-.nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.cart-btn {
-  background: var(--gold);
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
+  scroll-behavior: smooth;
 }
 
 /* HERO */
 .hero {
-  height: 80vh;
-  background: linear-gradient(rgba(16,43,58,0.85), rgba(16,43,58,0.95)),
-              url('https://via.placeholder.com/1200');
+  height: 100vh;
+  background:
+    linear-gradient(rgba(16,43,58,0.65), rgba(16,43,58,0.9)),
+    url('hero-bg.png');
   background-size: cover;
+  background-position: center;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  color: white;
 }
 
-.hero h2 {
-  font-size: 45px;
+/* LOGO */
+.logo-hero {
+  position: absolute;
+  top: 30px;
+  left: 50px;
+}
+
+.logo-hero img {
+  width: 75px;
+  transition: 0.3s;
+}
+
+.logo-hero img:hover {
+  transform: scale(1.1);
+}
+
+/* CART */
+.cart-btn {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  background: var(--gold);
+  padding: 12px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* HERO CONTENT */
+.hero-content {
+  text-align: center;
+  color: white;
+  animation: fadeUp 1.2s ease;
+}
+
+.hero-content h1 {
+  font-size: 50px;
   color: var(--gold);
 }
 
-.hero p {
+.hero-content p {
   margin-top: 10px;
+  opacity: 0.8;
+}
+
+/* BUTTON */
+.hero-btn {
+  margin-top: 25px;
+  background: var(--gold);
+  color: black;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* SECTION */
 .section {
-  padding: 60px;
+  padding: 80px 60px;
+}
+
+/* TITLE */
+.section h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
 }
 
 /* PRODUK */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
-  gap: 25px;
+  gap: 30px;
 }
 
 .card {
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px);
 }
 
 .card img {
   width: 100%;
-  height: 220px;
+  height: 230px;
   object-fit: cover;
 }
 
@@ -170,15 +180,6 @@ button {
   right: 0;
 }
 
-.cart-item {
-  margin-bottom: 5px;
-}
-
-.total {
-  margin-top: 10px;
-  font-weight: bold;
-}
-
 /* FOOTER */
 footer {
   background: var(--navy);
@@ -191,30 +192,25 @@ footer {
 
 <body>
 
-<header>
-  <div class="logo">
-    <img src="logo.png">
-    <div class="brand-text">
-      <h1>TERRASET</h1>
-      <span>TERRA • SET • TOGETHER</span>
-    </div>
-  </div>
-
-  <div class="nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <div class="cart-btn" onclick="toggleCart()">🛒</div>
-  </div>
-</header>
-
+<!-- HERO -->
 <section class="hero">
-  <div>
-    <h2>TERRA • SET • TOGETHER</h2>
-    <p>Official Merchandise HMTG Mayapada ITERA</p>
+
+  <div class="logo-hero">
+    <img src="logo.png">
   </div>
+
+  <div class="cart-btn" onclick="toggleCart()">🛒</div>
+
+  <div class="hero-content">
+    <h1>TERRASET</h1>
+    <p>Official Merchandise HMTG Mayapada ITERA</p>
+    <div class="hero-btn" onclick="scrollToProduk()">Shop Now</div>
+  </div>
+
 </section>
 
-<section class="section">
+<!-- PRODUK -->
+<section class="section" id="produk">
   <h2>Produk Kami</h2>
 
   <div class="grid">
@@ -237,31 +233,14 @@ footer {
       </div>
     </div>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/300">
-      <div class="card-body">
-        <h3>Tote Bag</h3>
-        <div class="price">Rp 70.000</div>
-        <button onclick="addToCart('Tote Bag',70000)">Tambah</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://via.placeholder.com/300">
-      <div class="card-body">
-        <h3>Tumbler</h3>
-        <div class="price">Rp 90.000</div>
-        <button onclick="addToCart('Tumbler',90000)">Tambah</button>
-      </div>
-    </div>
-
   </div>
 </section>
 
+<!-- CART -->
 <div class="cart" id="cart">
   <h3>Keranjang</h3>
   <div id="cart-items"></div>
-  <div class="total" id="total"></div>
+  <div id="total"></div>
   <button onclick="checkout()">Checkout</button>
 </div>
 
@@ -283,7 +262,7 @@ function renderCart() {
   items.innerHTML = "";
 
   cart.forEach(i => {
-    items.innerHTML += `<div class="cart-item">${i.name} - Rp ${i.price}</div>`;
+    items.innerHTML += `<div>${i.name} - Rp ${i.price}</div>`;
     total += i.price;
   });
 
@@ -296,11 +275,13 @@ function toggleCart() {
 
 function checkout() {
   let pesan = "Halo TERRASET, saya mau pesan:\n";
-  cart.forEach(i => {
-    pesan += "- " + i.name + "\n";
-  });
+  cart.forEach(i => pesan += "- " + i.name + "\n");
 
   window.open("https://wa.me/628XXXXXXXXXX?text=" + encodeURIComponent(pesan));
+}
+
+function scrollToProduk() {
+  document.getElementById("produk").scrollIntoView();
 }
 </script>
 

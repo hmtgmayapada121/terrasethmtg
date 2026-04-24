@@ -21,53 +21,69 @@
   scroll-behavior: smooth;
 }
 
+/* NAVBAR */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(16,43,58,0.6);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
+  width: 55px;
+}
+
+.logo span {
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* NAV RIGHT */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-btn {
+  background: var(--gold);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 /* HERO */
 .hero {
   height: 100vh;
   background:
-    linear-gradient(rgba(16,43,58,0.65), rgba(16,43,58,0.9)),
+    linear-gradient(rgba(16,43,58,0.7), rgba(16,43,58,0.9)),
     url('hero-bg.png');
   background-size: cover;
   background-position: center;
-  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* LOGO */
-.logo-hero {
-  position: absolute;
-  top: 30px;
-  left: 50px;
-}
-
-.logo-hero img {
-  width: 75px;
-  transition: 0.3s;
-}
-
-.logo-hero img:hover {
-  transform: scale(1.1);
-}
-
-/* CART */
-.cart-btn {
-  position: absolute;
-  top: 30px;
-  right: 50px;
-  background: var(--gold);
-  padding: 12px 16px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-/* HERO CONTENT */
-.hero-content {
   text-align: center;
   color: white;
-  animation: fadeUp 1.2s ease;
+}
+
+.hero-content {
+  animation: fadeUp 1s ease;
 }
 
 .hero-content h1 {
@@ -77,7 +93,7 @@
 
 .hero-content p {
   margin-top: 10px;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 /* BUTTON */
@@ -101,7 +117,7 @@
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(25px);
   }
   to {
     opacity: 1;
@@ -111,36 +127,30 @@
 
 /* SECTION */
 .section {
-  padding: 80px 60px;
-}
-
-/* TITLE */
-.section h2 {
-  margin-bottom: 30px;
-  font-size: 28px;
+  padding: 100px 60px 60px;
 }
 
 /* PRODUK */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
-  gap: 30px;
+  gap: 25px;
 }
 
 .card {
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
 }
 
 .card img {
   width: 100%;
-  height: 230px;
+  height: 220px;
   object-fit: cover;
 }
 
@@ -192,21 +202,25 @@ footer {
 
 <body>
 
-<!-- HERO -->
-<section class="hero">
-
-  <div class="logo-hero">
+<!-- NAVBAR -->
+<header>
+  <div class="logo">
     <img src="logo.png">
+    <span>TERRASET</span>
   </div>
 
-  <div class="cart-btn" onclick="toggleCart()">🛒</div>
+  <div class="nav-right">
+    <div class="cart-btn" onclick="toggleCart()">🛒</div>
+  </div>
+</header>
 
+<!-- HERO -->
+<section class="hero">
   <div class="hero-content">
     <h1>TERRASET</h1>
     <p>Official Merchandise HMTG Mayapada ITERA</p>
     <div class="hero-btn" onclick="scrollToProduk()">Shop Now</div>
   </div>
-
 </section>
 
 <!-- PRODUK -->

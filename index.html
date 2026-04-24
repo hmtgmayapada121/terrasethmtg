@@ -56,7 +56,20 @@ header {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  color: var(--gold);
 }
 
 .cart-btn {
@@ -210,6 +223,7 @@ footer {
   </div>
 
   <div class="nav-right">
+    <a href="about.html" class="nav-link">About</a>
     <div class="cart-btn" onclick="toggleCart()">🛒</div>
   </div>
 </header>

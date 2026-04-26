@@ -44,7 +44,7 @@
 </section>
 
 <!-- VISI MISI -->
-<section class="section">
+<section class="section fade-in">
 
   <h2>Visi & Misi</h2>
 
@@ -71,7 +71,7 @@
 </section>
 
 
-<section class="section">
+<section class="section fade-in">
 
   <h2>Makna Logo</h2>
 
@@ -110,23 +110,21 @@
 </footer>
 
 <script>
-// ANIMASI SCROLL
-const faders = document.querySelectorAll('.fade-in');
+window.addEventListener("load", () => {
 
-const appearOptions = {
-  threshold: 0.2
-};
+  const faders = document.querySelectorAll('.fade-in');
 
-const appearOnScroll = new IntersectionObserver(function(entries, observer){
-  entries.forEach(entry => {
-    if(!entry.isIntersecting) return;
-    entry.target.classList.add('show');
-    observer.unobserve(entry.target);
-  });
-}, appearOptions);
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
 
-faders.forEach(fader => {
-  appearOnScroll.observe(fader);
+  faders.forEach(el => appearOnScroll.observe(el));
+
 });
 </script>
 

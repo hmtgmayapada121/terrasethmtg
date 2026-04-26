@@ -169,21 +169,21 @@ function prosesCheckout(){
     return;
   }
 
-  let pesan = `Halo TERRASET,`;
-  pesan += `Saya ingin memesan produk berikut:`;
+let pesan = `Halo TERRASET,
 
-  cart.forEach(i=>{
-    pesan += `- ${i.name} (${i.qty}) = Rp ${formatRupiah(i.price*i.qty)}%0A`;
-  });
+Saya ingin memesan produk berikut:
+`;
 
-  let total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+cart.forEach(i=>{
+  pesan += `- ${i.name} (${i.qty}) = Rp ${formatRupiah(i.price*i.qty)}\n`;
+});
 
-  pesan += `Total Pembayaran: Rp ${formatRupiah(total)}`;
-  pesan += `Data Pemesan:`;
-  pesan += `Nama: ${nama}`;
-  pesan += `No HP: ${hp}`;
-  pesan += `Alamat: ${alamat}`;
-  pesan += `Mohon konfirmasi pesanan saya. Terima kasih.`;
+pesan += `\nTotal Pembayaran: Rp ${formatRupiah(total)}\n\n`;
+pesan += `Data Pemesan:\n`;
+pesan += `Nama: ${nama}\n`;
+pesan += `No HP: ${hp}\n`;
+pesan += `Alamat: ${alamat}\n\n`;
+pesan += `Mohon konfirmasi pesanan saya. Terima kasih.`;
 
 let url = "https://wa.me/6281267798478?text=" + encodeURIComponent(pesan);
 

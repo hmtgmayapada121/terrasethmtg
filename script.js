@@ -29,9 +29,17 @@ function addToCart(name, price) {
   if (item) item.qty++;
   else cart.push({ name, price, qty: 1 });
 
+  if(navigator.vibrate) navigator.vibrate(50);
+
   saveCart();
   renderCart();
   showToast();
+
+  // buka cart hanya kalau belum terbuka
+let cartEl = document.getElementById("cart");
+if (!cartEl.classList.contains("active")) {
+  toggleCart();
+ }
 }
 
 /* CHANGE QTY */
@@ -60,22 +68,13 @@ function clearCart() {
 
 /* RENDER CART */
 function renderCart() {
-window.addEventListener("load", ()=>{
-  let nama = localStorage.getItem("nama");
-  let hp = localStorage.getItem("hp");
-  let alamat = localStorage.getItem("alamat");
-
-  if(nama) document.getElementById("nama").value = nama;
-  if(hp) document.getElementById("hp").value = hp;
-  if(alamat) document.getElementById("alamat").value = alamat;
-});
   let items = document.getElementById("cart-items");
   if (!items) return;
 
   let total = 0;
   items.innerHTML = "";
 
-  // EMPTY STATE
+  // EMPTY
   if (cart.length === 0) {
     items.innerHTML = "<p>Keranjang kosong</p>";
 
@@ -86,7 +85,7 @@ window.addEventListener("load", ()=>{
     return;
   }
 
-  // LOOP ITEM
+  // LOOP
   cart.forEach((i, index) => {
     items.innerHTML += `
       <div style="margin-bottom:10px">
@@ -132,7 +131,6 @@ function revealOnScroll(){
 }
 
 window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
 
 /* TOGGLE CART */
 function toggleCart() {
@@ -159,15 +157,25 @@ function closeCheckout(){
   document.getElementById("checkout-modal").style.display = "none";
 }
 
-function prosesCheckout(){
+function prosesCheckout(e){
   let nama = document.getElementById("nama").value.trim();
   let hp = document.getElementById("hp").value.trim();
   let alamat = document.getElementById("alamat").value.trim();
+
+  let btn = e.target;
 
   if(!nama || !hp || !alamat){
     alert("Harap isi semua data!");
     return;
   }
+
+  // simpan data user
+  localStorage.setItem("nama", nama);
+  localStorage.setItem("hp", hp);
+  localStorage.setItem("alamat", alamat);
+
+  btn.innerText = "Mengirim...";
+  btn.disabled = true;
 
   let pesan = `Halo TERRASET,
 
@@ -192,12 +200,33 @@ Saya ingin memesan produk berikut:
   window.location.href = url;
 
   setTimeout(()=>{
-    cart = [];
-    saveCart();
-    renderCart();
-  },500);
+  cart = [];
+  saveCart();
+  renderCart();
+},500);
+
+  setTimeout(()=>{
+  btn.innerText = "Kirim Pesanan";
+  btn.disabled = false;
+},3000);
 
   closeCheckout();
+}
+
+/* TOMBOL “BELI SEKARANG” */
+function beliSekarang(nama, harga){
+  let pesan = `Halo TERRASET,
+
+Saya ingin memesan produk berikut:
+- ${nama} (1) = Rp ${formatRupiah(harga)}
+
+Total Pembayaran: Rp ${formatRupiah(harga)}
+
+Mohon konfirmasi pesanan saya. Terima kasih.`;
+
+  let url = "https://wa.me/6281267798478?text=" + encodeURIComponent(pesan);
+
+  window.location.href = url;
 }
 
 /* SCROLL PRODUK (ANTI KETUTUP NAVBAR) */
@@ -236,7 +265,7 @@ function filterKategori(kategori){
 
   cards.forEach(card=>{
     if(kategori === "all"){
-      card.style.display = "initial";
+      card.style.display = "block";
     } else {
       card.style.display = card.classList.contains(kategori) ? "block" : "none";
     }
@@ -253,15 +282,17 @@ function showToast(){
   },2000);
 }
 
-/* TOMBOL “BELI SEKARANG” */
-function beliSekarang(nama, harga){
-  let pesan = `Halo TERRASET, saya mau beli:%0A`;
-  pesan += `- ${nama}%0A`;
-  pesan += `Harga: Rp ${formatRupiah(harga)}`;
 
-  window.open("https://wa.me/6281267798478?text="+pesan);
-}
+window.addEventListener("load", () => {
+  let nama = localStorage.getItem("nama");
+  let hp = localStorage.getItem("hp");
+  let alamat = localStorage.getItem("alamat");
 
-/* INIT */
-renderCart();
+  if(nama) document.getElementById("nama").value = nama;
+  if(hp) document.getElementById("hp").value = hp;
+  if(alamat) document.getElementById("alamat").value = alamat;
+
+  renderCart();
+  revealOnScroll();
+});
 

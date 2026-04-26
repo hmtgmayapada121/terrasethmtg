@@ -76,6 +76,26 @@ header.scrolled {
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .hero {
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .hero-content {
+  max-width: 90%;
+  margin: auto;
+  }
+}
+
 /* SECTION */
 .section {
   padding: 120px 60px 60px;
@@ -140,6 +160,22 @@ header.scrolled {
   transform: translateX(0);
 }
 
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.6s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .clear-btn {
   background: red;
   color: white;
@@ -156,6 +192,8 @@ button {
 
 button:hover {
   transform: scale(1.05);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* CHECKOUT MODAL */
@@ -200,4 +238,41 @@ button:hover {
 .checkout-box .cancel {
   background: red;
   color: white;
+}
+
+footer {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 40px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  position: relative;
+  z-index: 2;
+}
+
+.img-modal {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.img-modal img {
+  max-width:90%;
+  max-height:90%;
+  border-radius:10px;
 }

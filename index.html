@@ -10,6 +10,9 @@
 </head>
 
 <body>
+  <div id="imgModal" class="img-modal" onclick="closeImage()">
+  <img id="modalImg">
+</div>
 
 <!-- BACKDROP -->
 <div class="backdrop" id="backdrop" onclick="toggleCart()"></div>
@@ -35,7 +38,7 @@
   <div class="hero-content">
     <h1>TERRASET</h1>
     <p>Official Merchandise HMTG Mayapada ITERA</p>
-    <div class="hero-btn" onclick="scrollToProduk()">Shop Now</div>
+    <button class="hero-btn" onclick="scrollToProduk()">Shop Now</button>
   </div>
 </section>
 
@@ -61,11 +64,11 @@
 <!-- PRODUK -->
 <section class="section" id="produk">
 
-  <h2>Inventaris</h2>
+  <h2 style="margin-top:50px;">Inventaris</h2>
   <div class="grid">
 
     <div class="card inventaris">
-      <img src="https://via.placeholder.com/300">
+      <img src="..." onclick="openImage(this.src)">
       <div class="card-body">
         <h3>Palu Sidang</h3>
         <div class="price">Rp 150.000</div>
@@ -74,7 +77,7 @@
     </div>
 
     <div class="card inventaris">
-      <img src="https://via.placeholder.com/300">
+      <img src="..." onclick="openImage(this.src)">
       <div class="card-body">
         <h3>Toa</h3>
         <div class="price">Rp 200.000</div>
@@ -83,7 +86,7 @@
     </div>
 
     <div class="card inventaris">
-      <img src="https://via.placeholder.com/300">
+      <img src="..." onclick="openImage(this.src)">
       <div class="card-body">
         <h3>Drum</h3>
         <div class="price">Rp 300.000</div>
@@ -96,23 +99,86 @@
   <h2 style="margin-top:50px;">Merchandise</h2>
   <div class="grid">
 
-    <div class="card merch"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Gelang</h3><div class="price">Rp 10.000</div><button onclick="addToCart('Gelang',10000)">Tambah</button></div></div>
+    <div class="card merchandise">
+      <img src="..." onclick="openImage(this.src)">
+      <div class="card-body">
+        <h3>Gelang</h3>
+        <div class="price">Rp 10.000</div>
+        <button onclick="addToCart('Gelang',10000)">Tambah</button>
+      </div>
+    </div>
 
-    <div class="card merch"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Keychain</h3><div class="price">Rp 15.000</div><button onclick="addToCart('Keychain',15000)">Tambah</button></div></div>
+    <div class="card merchandise">
+      <img src="..." onclick="openImage(this.src)">
+      <div class="card-body">
+        <h3>Keychain</h3>
+        <div class="price">Rp 15.000</div>
+        <button onclick="addToCart('Keychain',15000)">Tambah</button>
+      </div>
+    </div>
 
-    <div class="card merch"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Bandana</h3><div class="price">Rp 25.000</div><button onclick="addToCart('Bandana',25000)">Tambah</button></div></div>
+    <div class="card merchandise">
+      <img src="..." onclick="openImage(this.src)">
+      <div class="card-body">
+        <h3>Bandana</h3>
+        <div class="price">Rp 25.000</div>
+        <button onclick="addToCart('Bandana',25000)">Tambah</button>
+      </div>
+    </div>
 
-    <div class="card merch"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Sticker</h3><div class="price">Rp 10.000</div><button onclick="addToCart('Sticker',10000)">Tambah</button></div></div>
+    <div class="card merchandise">
+      <img src="..." onclick="openImage(this.src)">
+      <div class="card-body">
+        <h3>Sticker</h3>
+        <div class="price">Rp 10.000</div>
+        <button onclick="addToCart('Sticker',10000)">Tambah</button>
+      </div>
+    </div>
 
-    <div class="card merch"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Pin</h3><div class="price">Rp 12.000</div><button onclick="addToCart('Pin',12000)">Tambah</button></div></div>
+    <div class="card merchandise">
+      <img src="..." onclick="openImage(this.src)">
+      <div class="card-body">
+        <h3>Pin</h3>
+        <div class="price">Rp 12.000</div>
+        <button onclick="addToCart('Pin',12000)">Tambah</button>
+      </div>
+    </div>
 
-    <div class="card merch"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Topi</h3><div class="price">Rp 65.000</div><button onclick="addToCart('Topi',65000)">Tambah</button></div></div>
+    <div class="card merchandise">
+      <img src="..." onclick="openImage(this.src)">
+      <div class="card-body">
+        <h3>Topi</h3>
+        <div class="price">Rp 65.000</div>
+        <button onclick="addToCart('Topi',65000)">Tambah</button>
+      </div>
+    </div>
 
-    <div class="card merch"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Tumbler</h3><div class="price">Rp 90.000</div><button onclick="addToCart('Tumbler',90000)">Tambah</button></div></div>
+    <div class="card merchandise">
+      <img src="..." onclick="openImage(this.src)">
+      <div class="card-body">
+        <h3>Tumbler</h3>
+        <div class="price">Rp 90.000</div>
+        <button onclick="addToCart('Tumbler',90000)">Tambah</button>
+      </div>
+    </div>
 
-    <div class="card merch"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>Tote Bag</h3><div class="price">Rp 70.000</div><button onclick="addToCart('Tote Bag',70000)">Tambah</button></div></div>
+    <div class="card merchandise">
+      <img src="..." onclick="openImage(this.src)">
+      <div class="card-body">
+        <h3>Tote Bag</h3>
+        <div class="price">Rp 70.000</div>
+        <button onclick="addToCart('Tote Bag',70000)">Tambah</button>
+      </div>
+    </div>
 
-    <div class="card merch"><img src="https://via.placeholder.com/300"><div class="card-body"><h3>T-Shirt</h3><div class="price">Rp 85.000</div><button onclick="addToCart('T-Shirt',85000)">Tambah</button></div></div>
+    <div class="card merchandise">
+      <img src="..." onclick="openImage(this.src)">
+      <div class="card-body">
+        <h3>T-Shirt</h3>
+        <div class="price">Rp 85.000</div>
+        <button onclick="addToCart('T-Shirt',85000)">Tambah</button>
+      </div>
+    </div>
 
   </div>
 

@@ -91,6 +91,33 @@ function renderCart() {
   updateCartCount();
 }
 
+/* POP UP GAMBAR PRODUK */
+function openImage(src){
+  document.getElementById("modalImg").src = src;
+  document.getElementById("imgModal").style.display = "flex";
+}
+
+function closeImage(){
+  document.getElementById("imgModal").style.display = "none";
+}
+
+/* ANIMASI FADE IN PRODUK */
+function revealOnScroll(){
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    let top = card.getBoundingClientRect().top;
+    let screen = window.innerHeight;
+
+    if(top < screen - 50){
+      card.classList.add("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
 /* TOGGLE CART */
 function toggleCart() {
   let cartEl = document.getElementById("cart");
@@ -143,28 +170,16 @@ function prosesCheckout(){
   closeCheckout();
 }
 
-  let pesan = "Halo TERRASET, saya mau pesan:%0A";
-
-  cart.forEach(i => {
-    pesan += `- ${i.name} (${i.qty})%0A`;
-  });
-
-  let total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  pesan += `%0ATotal: Rp ${formatRupiah(total)}`;
-
-  let wa = window.open("https://wa.me/628XXXXXXXXXX?text=" + pesan);
-  if (wa) toggleCart();
-}
-
 /* SCROLL PRODUK (ANTI KETUTUP NAVBAR) */
-function scrollToProduk() {
+function scrollToProduk(){
   const el = document.getElementById("produk");
-  if (!el) return;
 
-  const yOffset = -100;
-  const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+  const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
 
-  window.scrollTo({ top: y, behavior: "smooth" });
+  window.scrollTo({
+    top: y,
+    behavior: "smooth"
+  });
 }
 
 /* NAVBAR SCROLL EFFECT */
@@ -175,5 +190,29 @@ window.addEventListener("scroll", () => {
   }
 });
 
+/* FITUR SEARCH & FILTER */
+function searchProduk(){
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card=>{
+    let text = card.innerText.toLowerCase();
+    card.style.display = text.includes(input) ? "block" : "none";
+  });
+}
+
+function filterKategori(kategori){
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card=>{
+    if(kategori === "all"){
+      card.style.display = "initial";
+    } else {
+      card.style.display = card.classList.contains(kategori) ? "block" : "none";
+    }
+  });
+}
+
 /* INIT */
 renderCart();
+

@@ -160,33 +160,42 @@ function closeCheckout(){
 }
 
 function prosesCheckout(){
-  localStorage.setItem("nama", nama);
-  localStorage.setItem("hp", hp);
-  localStorage.setItem("alamat", alamat);
-  let nama = document.getElementById("nama").value;
-  let hp = document.getElementById("hp").value;
-  let alamat = document.getElementById("alamat").value;
+  let nama = document.getElementById("nama").value.trim();
+  let hp = document.getElementById("hp").value.trim();
+  let alamat = document.getElementById("alamat").value.trim();
 
   if(!nama || !hp || !alamat){
     alert("Harap isi semua data!");
     return;
   }
 
-  let pesan = `Halo TERRASET, saya mau pesan:%0A`;
-  pesan += `Nama: ${nama}%0A`;
-  pesan += `No HP: ${hp}%0A`;
-  pesan += `Alamat: ${alamat}%0A%0A`;
+  let pesan = `Halo TERRASET,%0A%0A`;
+  pesan += `Saya ingin memesan produk berikut:%0A`;
 
   cart.forEach(i=>{
-    pesan += `- ${i.name} (${i.qty})%0A`;
+    pesan += `- ${i.name} (${i.qty}) = Rp ${formatRupiah(i.price*i.qty)}%0A`;
   });
 
   let total = cart.reduce((s,i)=>s+i.price*i.qty,0);
-  pesan += `%0ATotal: Rp ${formatRupiah(total)}`;
 
-  window.open("https://wa.me/6281267798478?text="+pesan);
+  pesan += `%0ATotal Pembayaran: Rp ${formatRupiah(total)}%0A%0A`;
+  pesan += `Data Pemesan:%0A`;
+  pesan += `Nama: ${nama}%0A`;
+  pesan += `No HP: ${hp}%0A`;
+  pesan += `Alamat: ${alamat}%0A%0A`;
+  pesan += `Mohon konfirmasi pesanan saya. Terima kasih.`;
 
-  closeCheckout();
+let url = "https://wa.me/6281267798478?text=" + encodeURIComponent(pesan);
+
+window.location.href = url;
+
+setTimeout(()=>{
+  cart = [];
+  saveCart();
+  renderCart();
+},500);
+
+closeCheckout();
 }
 
 /* SCROLL PRODUK (ANTI KETUTUP NAVBAR) */

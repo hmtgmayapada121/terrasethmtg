@@ -321,6 +321,26 @@ window.addEventListener("load", () => {
   if(hp) document.getElementById("hp").value = hp;
   if(alamat) document.getElementById("alamat").value = alamat;
 
+window.addEventListener("load", () => {
+
+  const faders = document.querySelectorAll('.fade-in');
+
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  faders.forEach(el => appearOnScroll.observe(el));
+
+  // 🔥 trigger awal
+  window.dispatchEvent(new Event('scroll'));
+
+});
+
   renderCart();
   revealOnScroll();
 });

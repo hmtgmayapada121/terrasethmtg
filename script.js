@@ -169,33 +169,35 @@ function prosesCheckout(){
     return;
   }
 
-let pesan = `Halo TERRASET,
+  let pesan = `Halo TERRASET,
 
 Saya ingin memesan produk berikut:
 `;
 
-cart.forEach(i=>{
-  pesan += `- ${i.name} (${i.qty}) = Rp ${formatRupiah(i.price*i.qty)}\n`;
-});
+  cart.forEach(i=>{
+    pesan += `- ${i.name} (${i.qty}) = Rp ${formatRupiah(i.price*i.qty)}\n`;
+  });
 
-pesan += `\nTotal Pembayaran: Rp ${formatRupiah(total)}\n\n`;
-pesan += `Data Pemesan:\n`;
-pesan += `Nama: ${nama}\n`;
-pesan += `No HP: ${hp}\n`;
-pesan += `Alamat: ${alamat}\n\n`;
-pesan += `Mohon konfirmasi pesanan saya. Terima kasih.`;
+  let total = cart.reduce((s,i)=>s+i.price*i.qty,0);
 
-let url = "https://wa.me/6281267798478?text=" + encodeURIComponent(pesan);
+  pesan += `\nTotal Pembayaran: Rp ${formatRupiah(total)}\n\n`;
+  pesan += `Data Pemesan:\n`;
+  pesan += `Nama: ${nama}\n`;
+  pesan += `No HP: ${hp}\n`;
+  pesan += `Alamat: ${alamat}\n\n`;
+  pesan += `Mohon konfirmasi pesanan saya. Terima kasih.`;
 
-window.location.href = url;
+  let url = "https://wa.me/6281267798478?text=" + encodeURIComponent(pesan);
 
-setTimeout(()=>{
-  cart = [];
-  saveCart();
-  renderCart();
-},500);
+  window.location.href = url;
 
-closeCheckout();
+  setTimeout(()=>{
+    cart = [];
+    saveCart();
+    renderCart();
+  },500);
+
+  closeCheckout();
 }
 
 /* SCROLL PRODUK (ANTI KETUTUP NAVBAR) */

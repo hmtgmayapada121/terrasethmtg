@@ -20,43 +20,92 @@
 
   <div class="nav">
     <a href="index.html">Home</a>
-    <a href="about.html">About</a>
+    <a href="about.html" class="active">About</a>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>TERRASET</h1>
-  <p>TERRA • SET • TOGETHER</p>
+  <div class="hero-content">
+    <h1>TERRASET</h1>
+    <p>TERRA • SET • TOGETHER</p>
+  </div>
 </section>
 
-<!-- CONTENT -->
-<section class="section">
+<!-- ABOUT -->
+<section class="section fade-in">
+  <h2>Tentang Kami</h2>
+  <p class="desc">
+    TERRASET merupakan representasi dari <b>Terra (Bumi)</b> dan <b>Set (Himpunan)</b>,
+    yang menggambarkan kesatuan mahasiswa dalam eksplorasi ilmu kebumian.
+    Kami hadir sebagai wadah kreatif dan inovatif bagi HMTG Mayapada ITERA
+    untuk mengekspresikan identitas melalui produk dan karya.
+  </p>
+</section>
 
-  <div class="box">
-    <h3>Tentang Kami</h3>
-    <p>
-      TERRASET adalah representasi dari Terra (bumi) dan Set (himpunan),
-      menggambarkan kesatuan HMTG Mayapada ITERA dalam eksplorasi ilmu kebumian.
-    </p>
-  </div>
+<!-- VISI MISI -->
+<section class="section dark fade-in">
+  <h2>Visi & Misi</h2>
 
-  <div class="box">
-    <h3>Makna Logo</h3>
+  <div class="grid">
+    <div class="card">
+      <h3>🎯 Visi</h3>
+      <p>Menjadi identitas kreatif HMTG yang inovatif dan berkarakter di bidang kebumian.</p>
+    </div>
 
-    <div class="grid">
-      <div><h4>⛰ Gunung</h4><p>Eksplorasi dan tantangan.</p></div>
-      <div><h4>🌊 Lapisan</h4><p>Struktur bumi dan geologi.</p></div>
-      <div><h4>🧭 Kompas</h4><p>Arah dan visi.</p></div>
-      <div><h4>🔵 Himpunan</h4><p>Kebersamaan organisasi.</p></div>
+    <div class="card">
+      <h3>🚀 Misi</h3>
+      <p>
+        Mengembangkan produk kreatif, meningkatkan solidaritas,
+        serta membangun branding organisasi yang kuat.
+      </p>
     </div>
   </div>
+</section>
 
+<!-- MAKNA LOGO -->
+<section class="section fade-in">
+  <h2>Makna Logo</h2>
+
+  <div class="grid">
+    <div class="card"><h4>⛰ Gunung</h4><p>Melambangkan eksplorasi dan tantangan.</p></div>
+    <div class="card"><h4>🌊 Lapisan</h4><p>Mewakili struktur bumi dan geologi.</p></div>
+    <div class="card"><h4>🧭 Kompas</h4><p>Arah dan visi ke depan.</p></div>
+    <div class="card"><h4>🔵 Himpunan</h4><p>Kebersamaan dalam organisasi.</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Bersama TERRASET</h2>
+  <p>Kita tidak hanya menjual produk, tapi membawa identitas.</p>
+  <a href="index.html" class="btn">Lihat Produk</a>
 </section>
 
 <footer>
   © TERRASET HMTG MAYAPADA ITERA
 </footer>
+
+<script>
+// ANIMASI SCROLL
+const faders = document.querySelectorAll('.fade-in');
+
+const appearOptions = {
+  threshold: 0.2
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, observer){
+  entries.forEach(entry => {
+    if(!entry.isIntersecting) return;
+    entry.target.classList.add('show');
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
+
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
+</script>
 
 </body>
 </html>

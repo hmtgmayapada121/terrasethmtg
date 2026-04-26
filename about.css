@@ -50,7 +50,7 @@ header {
 }
 
 /* HERO */
-.hero {
+.about-page .hero {
   height: 300px;
   background: linear-gradient(rgba(16,43,58,0.9), rgba(16,43,58,0.9)),
               url('https://images.unsplash.com/photo-1581090700227-1e8a3b6d6f1e');
@@ -143,4 +143,13 @@ footer {
 .fade-in.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.about-page .card {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.about-page .hero {
+  margin-top: 80px;
 }

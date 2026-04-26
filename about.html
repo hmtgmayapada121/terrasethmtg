@@ -110,22 +110,7 @@
 </footer>
 
 <script>
-window.addEventListener("load", () => {
-
-  const faders = document.querySelectorAll('.fade-in');
-
-  const appearOnScroll = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('show');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  faders.forEach(el => appearOnScroll.observe(el));
-
-});
+<script src="about.js"></script>
 </script>
 
 </body>

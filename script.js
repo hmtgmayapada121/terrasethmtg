@@ -162,6 +162,9 @@ function prosesCheckout(e){
   let hp = document.getElementById("hp").value.trim();
   let alamat = document.getElementById("alamat").value.trim();
 
+  let ongkir = parseInt(document.getElementById("kota").value);
+  let metode = document.getElementById("pembayaran").value;
+
   let btn = e.target;
 
   if(!nama || !hp || !alamat){
@@ -169,7 +172,6 @@ function prosesCheckout(e){
     return;
   }
 
-  // simpan data user
   localStorage.setItem("nama", nama);
   localStorage.setItem("hp", hp);
   localStorage.setItem("alamat", alamat);
@@ -177,38 +179,54 @@ function prosesCheckout(e){
   btn.innerText = "Mengirim...";
   btn.disabled = true;
 
+  let orderID = generateOrderID();
+
   let pesan = `Halo TERRASET,
+
+Order ID: ${orderID}
 
 Saya ingin memesan produk berikut:
 `;
 
+  let total = 0;
+
   cart.forEach(i=>{
-    pesan += `- ${i.name} (${i.qty}) = Rp ${formatRupiah(i.price*i.qty)}\n`;
+    let subtotal = i.price * i.qty;
+    total += subtotal;
+    pesan += `- ${i.name} (${i.qty}) = Rp ${formatRupiah(subtotal)}\n`;
   });
 
-  let total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  let grandTotal = total + ongkir;
 
-  pesan += `\nTotal Pembayaran: Rp ${formatRupiah(total)}\n\n`;
+  let status = "MENUNGGU KONFIRMASI";
+
+  pesan += `\nSubtotal: Rp ${formatRupiah(total)}`;
+  pesan += `\nOngkir: Rp ${formatRupiah(ongkir)}`;
+  pesan += `\nTotal: Rp ${formatRupiah(grandTotal)}\n\n`;
+
+  pesan += `Metode Pembayaran: ${metode}\n`;
+  pesan += `Status: ${status}\n\n`;
+
   pesan += `Data Pemesan:\n`;
   pesan += `Nama: ${nama}\n`;
   pesan += `No HP: ${hp}\n`;
   pesan += `Alamat: ${alamat}\n\n`;
+
   pesan += `Mohon konfirmasi pesanan saya. Terima kasih.`;
 
-  let url = "https://wa.me/6281267798478?text=" + encodeURIComponent(pesan);
+  let urlUser = "https://wa.me/6281267798478?text=" + encodeURIComponent(pesan);
 
-  window.location.href = url;
-
-  setTimeout(()=>{
-  cart = [];
-  saveCart();
-  renderCart();
-},500);
+  // ADMIN COPY
+  let urlAdmin = "https://wa.me/6281267798478?text=" + encodeURIComponent("ORDER MASUK:\n\n" + pesan);
 
   setTimeout(()=>{
-  btn.innerText = "Kirim Pesanan";
-  btn.disabled = false;
-},3000);
+    cart = [];
+    saveCart();
+    renderCart();
+
+    window.open(urlAdmin); // kirim ke admin
+    window.location.href = urlUser; // kirim ke user
+  },300);
 
   closeCheckout();
 }
@@ -282,6 +300,17 @@ function showToast(){
   },2000);
 }
 
+/* NOMOR ORDER OTOMATIS */
+function generateOrderID(){
+  let last = localStorage.getItem("lastOrder") || 0;
+  last++;
+  localStorage.setItem("lastOrder", last);
+
+  return "ORDER-" + String(last).padStart(3,"0");
+}
+
+/* STATUS PESANAN */
+let status = "MENUNGGU KONFIRMASI";
 
 window.addEventListener("load", () => {
   let nama = localStorage.getItem("nama");

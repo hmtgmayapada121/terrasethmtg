@@ -169,8 +169,8 @@ function prosesCheckout(){
     return;
   }
 
-  let pesan = `Halo TERRASET,%0A%0A`;
-  pesan += `Saya ingin memesan produk berikut:%0A`;
+  let pesan = `Halo TERRASET,`;
+  pesan += `Saya ingin memesan produk berikut:`;
 
   cart.forEach(i=>{
     pesan += `- ${i.name} (${i.qty}) = Rp ${formatRupiah(i.price*i.qty)}%0A`;
@@ -178,11 +178,11 @@ function prosesCheckout(){
 
   let total = cart.reduce((s,i)=>s+i.price*i.qty,0);
 
-  pesan += `%0ATotal Pembayaran: Rp ${formatRupiah(total)}%0A%0A`;
-  pesan += `Data Pemesan:%0A`;
-  pesan += `Nama: ${nama}%0A`;
-  pesan += `No HP: ${hp}%0A`;
-  pesan += `Alamat: ${alamat}%0A%0A`;
+  pesan += `Total Pembayaran: Rp ${formatRupiah(total)}`;
+  pesan += `Data Pemesan:`;
+  pesan += `Nama: ${nama}`;
+  pesan += `No HP: ${hp}`;
+  pesan += `Alamat: ${alamat}`;
   pesan += `Mohon konfirmasi pesanan saya. Terima kasih.`;
 
 let url = "https://wa.me/6281267798478?text=" + encodeURIComponent(pesan);

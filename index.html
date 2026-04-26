@@ -127,6 +127,22 @@
   <button onclick="clearCart()" class="clear-btn">Clear</button>
 </div>
 
+<!-- CHECKOUT MODAL -->
+<div id="checkout-modal" class="checkout-modal">
+  <div class="checkout-box">
+
+    <h3>Checkout</h3>
+
+    <input type="text" id="nama" placeholder="Nama Lengkap">
+    <input type="text" id="hp" placeholder="No WhatsApp">
+    <textarea id="alamat" placeholder="Alamat Lengkap"></textarea>
+
+    <button onclick="prosesCheckout()">Kirim Pesanan</button>
+    <button onclick="closeCheckout()" class="cancel">Batal</button>
+
+  </div>
+</div>
+
 <footer>© TERRASET HMTG MAYAPADA STORE</footer>
 
 <script src="script.js"></script>

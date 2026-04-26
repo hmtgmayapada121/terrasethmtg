@@ -103,11 +103,45 @@ function toggleCart() {
 }
 
 /* CHECKOUT WA */
-function checkout() {
-  if (cart.length === 0) {
+function checkout(){
+  if(cart.length === 0){
     alert("Keranjang masih kosong");
     return;
   }
+
+  document.getElementById("checkout-modal").style.display = "flex";
+}
+
+function closeCheckout(){
+  document.getElementById("checkout-modal").style.display = "none";
+}
+
+function prosesCheckout(){
+  let nama = document.getElementById("nama").value;
+  let hp = document.getElementById("hp").value;
+  let alamat = document.getElementById("alamat").value;
+
+  if(!nama || !hp || !alamat){
+    alert("Harap isi semua data!");
+    return;
+  }
+
+  let pesan = `Halo TERRASET, saya mau pesan:%0A`;
+  pesan += `Nama: ${nama}%0A`;
+  pesan += `No HP: ${hp}%0A`;
+  pesan += `Alamat: ${alamat}%0A%0A`;
+
+  cart.forEach(i=>{
+    pesan += `- ${i.name} (${i.qty})%0A`;
+  });
+
+  let total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  pesan += `%0ATotal: Rp ${formatRupiah(total)}`;
+
+  window.open("https://wa.me/6281267798478?text="+pesan);
+
+  closeCheckout();
+}
 
   let pesan = "Halo TERRASET, saya mau pesan:%0A";
 

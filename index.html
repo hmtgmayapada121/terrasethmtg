@@ -172,14 +172,15 @@ button {
 .cart {
   position: fixed;
   right: -320px;
-  top: 0;
+  top: 90px; /* ⬅️ kasih jarak dari navbar */
   width: 320px;
-  height: 100%;
+  height: calc(100% - 90px); /* ⬅️ biar tinggi menyesuaikan */
   background: white;
   box-shadow: -5px 0 20px rgba(0,0,0,0.3);
   padding: 20px;
   transition: 0.3s;
   overflow-y: auto;
+  border-left: 2px solid #eee;
 }
 
 .cart.active {

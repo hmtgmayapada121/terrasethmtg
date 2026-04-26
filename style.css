@@ -196,6 +196,24 @@ button:hover {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* NOTIFIKASI “DITAMBAHKAN KE KERANJANG” */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #102B3A;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 2000;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
 /* CHECKOUT MODAL */
 .checkout-modal {
   position: fixed;
@@ -275,4 +293,32 @@ footer {
   max-width:90%;
   max-height:90%;
   border-radius:10px;
+}
+
+/* LOADING EFFECT (BIAR GA KAKU) */
+.card img {
+  transition: 0.3s;
+}
+
+.card img:hover {
+  transform: scale(1.05);
+}
+
+/* FIX MOBILE UX TOTAL */
+@media (max-width: 768px){
+  header {
+    padding: 15px 20px;
+  }
+
+  .section {
+    padding: 100px 20px 40px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  }
+
+  .card img {
+    height: 150px;
+  }
 }

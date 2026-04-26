@@ -12,9 +12,15 @@ function saveCart() {
 
 /* UPDATE BADGE */
 function updateCartCount() {
-  let total = cart.reduce((sum, i) => sum + i.qty, 0);
+  let totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+  let totalHarga = cart.reduce((sum, i) => sum + i.qty*i.price, 0);
+
   let el = document.getElementById("cart-count");
-  if (el) el.innerText = total;
+
+  if(el){
+    el.innerText = totalQty;
+    el.title = "Rp " + formatRupiah(totalHarga);
+  }
 }
 
 /* ADD ITEM */
@@ -25,6 +31,7 @@ function addToCart(name, price) {
 
   saveCart();
   renderCart();
+  showToast();
 }
 
 /* CHANGE QTY */
@@ -53,6 +60,15 @@ function clearCart() {
 
 /* RENDER CART */
 function renderCart() {
+window.addEventListener("load", ()=>{
+  let nama = localStorage.getItem("nama");
+  let hp = localStorage.getItem("hp");
+  let alamat = localStorage.getItem("alamat");
+
+  if(nama) document.getElementById("nama").value = nama;
+  if(hp) document.getElementById("hp").value = hp;
+  if(alamat) document.getElementById("alamat").value = alamat;
+});
   let items = document.getElementById("cart-items");
   if (!items) return;
 
@@ -144,6 +160,9 @@ function closeCheckout(){
 }
 
 function prosesCheckout(){
+  localStorage.setItem("nama", nama);
+  localStorage.setItem("hp", hp);
+  localStorage.setItem("alamat", alamat);
   let nama = document.getElementById("nama").value;
   let hp = document.getElementById("hp").value;
   let alamat = document.getElementById("alamat").value;
@@ -211,6 +230,25 @@ function filterKategori(kategori){
       card.style.display = card.classList.contains(kategori) ? "block" : "none";
     }
   });
+}
+
+/* NOTIFIKASI “DITAMBAHKAN KE KERANJANG” */
+function showToast(){
+  let t = document.getElementById("toast");
+  t.classList.add("show");
+
+  setTimeout(()=>{
+    t.classList.remove("show");
+  },2000);
+}
+
+/* TOMBOL “BELI SEKARANG” */
+function beliSekarang(nama, harga){
+  let pesan = `Halo TERRASET, saya mau beli:%0A`;
+  pesan += `- ${nama}%0A`;
+  pesan += `Harga: Rp ${formatRupiah(harga)}`;
+
+  window.open("https://wa.me/6281267798478?text="+pesan);
 }
 
 /* INIT */
